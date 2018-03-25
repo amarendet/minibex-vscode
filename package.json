@@ -2,7 +2,7 @@
     "name": "minibex-lang",
     "displayName": "Minibex File Support",
     "description": "Syntax and snippets for Minibex files",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "amarendet",
     "engines": {
         "vscode": "^1.21.0"
