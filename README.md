@@ -1,4 +1,4 @@
-# minibex-vscode README
+# Minibex support for VSCode
 
 This plugin provides syntax highlighting and snippets for the Minibex file format, featured in the [IBEX library](http://www.ibex-lib.org). It also allows to immediately launch the ibex optimizer or solver in the editor.
 
@@ -23,10 +23,10 @@ There is no requirements.
 
 This extension contributes the following settings:
 
-* `minibex.ibexOptimPath`: path to `ibexopt`
+* `minibex.ibexOptimPath`: path to `ibexopt`,
 * `minibex.ibexSolverPath`: path to `ibexsolve`,
-* `minibex.solverMinEps`: paving precision
-* `minibex.optGoalEps`: precision on objective
+* `minibex.solverMinEps`: paving precision,
+* `minibex.optGoalEps`: precision on objective,
 
 ## Known Issues
 
@@ -35,7 +35,7 @@ This extension contributes the following settings:
 
 ## Release Notes
 
-### 0.0.1
+### [0.0.1] - 2018-03-25
 
 Initial release.
 
