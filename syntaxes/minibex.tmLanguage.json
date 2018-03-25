@@ -1,0 +1,316 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Minibex",
+	"patterns": [
+		{
+			"include": "#variables-block"
+		},
+		{
+			"include": "#constants-block"
+		},
+		{
+			"include": "#goal-block"
+		},
+		{
+			"include": "#constraints-block"
+		},
+		{
+			"include": "#function-decl"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"variables-block": {
+			"name": "meta.variables-block.minibex",
+			"begin": "(?i)\\b(variables)\\b(?-i)",
+			"end": "^$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.minibex"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#variables-decl"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"variables-decl": {
+			"name": "meta.variables-decl.minibex",
+			"begin": "^\\s*",
+			"end": "(;|,)",
+			"patterns": [
+				{
+					"name": "keyword.control.minibex",
+					"match": "in"
+				},
+				{
+					"include": "#variable-name-decl"
+				},
+				{
+					"include": "#expr"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"variable-name-decl": {
+			"patterns": [
+				{
+					"name": "variable.name.minibex",
+					"match": "[_a-zA-Z][_a-zA-Z0-9]*"
+				},
+				{
+					"name": "variable.name.quantified.minibex",
+					"match": "p_[_a-zA-Z0-9]*"
+				}
+			]
+		},
+		"constants-block": {
+			"name": "meta.constants-block.minibex",
+			"begin": "(?i)\\b(constants)\\b(?-i)",
+			"end": "^$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.minibex"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#constants-decl"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"constants-decl": {
+			"name": "meta.constants-decl.minibex",
+			"begin": "^\\s*",
+			"end": ";",
+			"patterns": [
+				{
+					"name": "keyword.control.minibex",
+					"match": "(=|in)"
+				},
+				{
+					"include": "#constant-name"
+				},
+				{
+					"include": "#expr"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		"constant-name": {
+			"patterns": [
+				{
+					"name": "variable.other.constant.minibex",
+					"match": "[A-Z_][A-Z0-9_]*"
+				}
+			]
+		},
+		"goal-block": {
+			"name": "meta.goal-block.minibex",
+			"begin": "(?i)\\b(minimize)\\b(?-i)",
+			"end": "^$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.minibex"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#expr"
+				}
+			]
+		},
+		"constraints-block": {
+			"name": "meta.constraints-block.minibex",
+			"begin": "(?i)\\b(constraints)\\b(?-i)",
+			"end": "(?i)\\b(end)\\b(?i)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.minibex"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "keyword.other.minibex"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#constraint-decl"
+				},
+				{
+					"include": "#constraint-for-loop"
+				}
+			]
+		},
+		"constraint-decl": {
+			"name": "meta.constraint-decl.minibex",
+			"begin": "^\\s*",
+			"end": ";",
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#comp-op"
+				},
+				{
+					"include": "#expr"
+				}
+			]
+		},
+		"constraint-for-loop": {
+			"name":"meta.constraint-for-loop.minibex",
+			"begin": "^\\s*(for)\\s",
+			"end": "(end)",
+			"beginCaptures": {"1": {"name":"keyword.control.minibex"}},
+			"endCaptures": {"1": {"name":"keyword.control.minibex"}},
+			"patterns": [
+				{
+					"include": "#constraint-decl"
+				}
+			]
+		},
+		"function-decl": {
+			"name": "meta.function-decl.minibex",
+			"begin": "(function) ([_[:alpha:]][[:alnum:]_]*)",
+			"end": "(end)",
+			"beginCaptures": {
+				"1": {
+					"name": "storage.type.minibex"
+				},
+				"2": {
+					"name": "entity.name.function"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "keyword.other.minibex"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"name": "keyword.control",
+					"match": "return"
+				},
+				{
+					"include": "#expr"
+				}
+			]
+		},
+		"expr": {
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"name": "meta.interval.minibex",
+					"begin": "\\[",
+					"end": "\\]",
+					"patterns": [
+						{
+							"include": "#expr"
+						}
+					]
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#builtin-function-name"
+				},
+				{
+					"include": "#constant-name"
+				},
+				{
+					"include": "#variable-name"
+				}
+			]
+		},
+		"builtin-function-name": {
+			"patterns": [
+				{
+					"name": "entity.name.function.builtin.interval.minibex",
+					"match": "interval"
+				},
+				{
+					"name": "entity.name.function.builtin.minibex",
+					"match": "(diff|max|min|atan2|sign|abs|exp|ln|sqrt|cos|sin|tan|acos|asin|atan|cosh|sinh|tanh|acosh|asinh|atanh|chi|in|inf|mid|sup)"
+				}
+			]
+		},
+		"variable-name": {
+			"patterns": [
+				{
+					"name": "variable.other.quantified.minibex",
+					"match": "p_[_a-zA-Z0-9]*"
+				},
+				{
+					"name": "variable.other.minibex",
+					"match": "[_a-zA-Z][_a-zA-Z0-9]*"
+				}
+			]
+		},
+		"comp-op": {
+			"patterns": [
+				{
+					"name": "keyword.arithmetic.comp.minibex",
+					"match": "(=|<|>|<=|>=)"
+				}
+			]
+		},
+		"block-keywords": {
+			"patterns": [
+				{
+					"name": "keyword.other.minibex",
+					"match": "(?i)\\b(variables|constants|constraints|minimize|end)\\b(?-i)"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.minibex",
+					"begin": "//",
+					"end": "$"
+				},
+				{
+					"name": "comment.block.minibex",
+					"begin": "/\\*",
+					"end": "\\*/"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.language.minibex",
+					"match": "(\\+oo|\\-oo|pi)"
+				}
+			]
+		}
+	},
+	"scopeName": "source.minibex"
+}

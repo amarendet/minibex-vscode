@@ -1,0 +1,110 @@
+{
+    "name": "minibex-lang",
+    "displayName": "Minibex File Support",
+    "description": "Syntax and snippets for Minibex files",
+    "version": "0.0.1",
+    "publisher": "amarendet",
+    "engines": {
+        "vscode": "^1.21.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/amarendet/minibex-vscode.git"
+    },
+    "bugs": {
+        "url": "https://github.com/amarendet/minibex-vscode/issues"
+    },
+    "license": "MIT License",
+    "homepage": "https://github.com/amarendet/minibex-vscode/blob/master/README.md",
+    "categories": [
+        "Languages",
+        "Snippets"
+    ],
+    "activationEvents": [
+        "onLanguage:minibex"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "minibex",
+                "aliases": [
+                    "Minibex",
+                    "minibex"
+                ],
+                "extensions": [
+                    ".mbx"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "minibex",
+                "scopeName": "source.minibex",
+                "path": "./syntaxes/minibex.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "minibex",
+                "path": "./snippets/snippets.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello World"
+            },
+            {
+                "command": "extension.runOpt",
+                "title": "Run ibexopt"
+            },
+            {
+                "command": "extension.runSolve",
+                "title": "Run ibexsolve"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Minibex configuration",
+            "properties": {
+                "minibex.ibexSolverPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "A string representing the path to the ibexsolve binaries."
+                },
+                "minibex.ibexOptimPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "A string representing the path to the ibexopt binaries."
+                },
+                "minibex.solverMinEps": {
+                    "type": "number",
+                    "default": 0.1,
+                    "description": "Precision on the boxes required by the solver."
+                },
+                "minibex.optGoalEps": {
+                    "type": "number",
+                    "default": 0.1,
+                    "description": "Precision on the objective required by the optimizer."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}

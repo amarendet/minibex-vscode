@@ -1,0 +1,112 @@
+{
+    "Variables": {
+        "prefix": "variables",
+        "body": [
+            "Variables",
+            "    ${1:var} in ${2:domain};"
+        ]
+    },
+    "Constants": {
+        "prefix": "constants",
+        "body": [
+            "Constants",
+            "    ${1:var} = ${2:expr}"
+        ]
+    },
+    "Vector": {
+        "prefix": "vector",
+        "body": [
+            "(${3:val1}, ${4:val2})"
+        ]
+    },
+    "Matrix": {
+        "prefix": "matrix",
+        "body": [
+            "(",
+            "    ${1:row1};",
+            "    ${2:row2}",
+            ");"
+        ]
+    },
+    "VectorVariable": {
+        "prefix": "varvector",
+        "body": [
+            "${1:var}[${2:dim}] in ${3:vector};"
+        ]
+    },
+    "MatrixVariable": {
+        "prefix": "varmatrix",
+        "body": [
+            "${1:var}[${2:rows}][${3:cols}] in ${4:matrix}"
+        ]
+    },
+    "Function": {
+        "prefix": "function",
+        "body": [
+            "function ${1:name}(${2:args})",
+            "    return ${3:value}",
+            "end"
+        ]
+    },
+    "Minimize": {
+        "prefix": "minimize",
+        "body": [
+            "Minimize",
+            "    ${1:goalExpr};"
+        ]
+    },
+    "Constraints:": {
+        "prefix": "constraints",
+        "body": [
+            "Constraints",
+            "    ${0:constraints}",
+            "end"
+        ]
+    },
+    "Constraint": {
+        "prefix": "addconstraint",
+        "body": [
+            "${1:expr} ${2:op} ${3:expr};"
+        ]
+    },
+    "ForLoop": {
+        "prefix": "for",
+        "body": [
+            "for ${1:var}=${2:start}:${3:end};",
+            "    ${4:content}",
+            "end"
+        ]
+    },
+    "Interval": {
+        "prefix": "interval",
+        "body": [
+            "[${1:left}, ${2:right}]"
+        ]
+    },
+    "MinusInfinity": {
+        "prefix": "minf",
+        "body": [
+            "-oo"
+        ]
+    },
+    "PlusInfinity": {
+        "prefix": "pinf",
+        "body": [
+            "+oo"
+        ]
+    },
+    "LineComment": {
+        "prefix": "linecomment",
+        "body": [
+            "// ${1:comment}"
+        ]
+    },
+    "BlockComment": {
+        "prefix": "blockcomment",
+        "body": [
+            "/*",
+            " * ${1:comment}",
+            "**/"
+        ]
+    }
+}
