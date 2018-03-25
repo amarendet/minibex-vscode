@@ -54,11 +54,11 @@
         "commands": [
             {
                 "command": "extension.runOpt",
-                "title": "Run ibexopt"
+                "title": "Minibex: Run ibexopt"
             },
             {
                 "command": "extension.runSolve",
-                "title": "Run ibexsolve"
+                "title": "Minibex: Run ibexsolve"
             }
         ],
         "configuration": {

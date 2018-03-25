@@ -33,10 +33,4 @@ This extension contributes the following settings:
 * Syntax highlighting is still minimal, and could not work in more complex cases. The defined grammar is very basic.
 * Colors are a bit ugly.
 
-## Release Notes
-
-### [0.0.1] - 2018-03-25
-
-Initial release.
-
 **Enjoy!**
