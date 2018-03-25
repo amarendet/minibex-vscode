@@ -53,10 +53,6 @@
         ],
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
-            },
-            {
                 "command": "extension.runOpt",
                 "title": "Run ibexopt"
             },
